@@ -33,16 +33,18 @@ class action_plugin_googlefonts extends DokuWiki_Action_Plugin {
 		for ($i = 1; $i <= 6; $i++) {
 			${fontName.$i} = $this->getConf('fontName'.$i);
 			${headings.$i} = $this->getConf('headings'.$i);
+			${genFamily.$i} = $this->getConf('genFamily'.$i);
+			${addStyle.$i} = $this->getConf('addStyle'.$i);
 			$fontNames[] = ${fontName.$i};
 	        // add styles
 		    // if not set, set them through CSS as usual
-	        if ( $this->getConf('addStyles') && !empty(${fontName.$i}) ) {
-		        $CSSembed[] = ${headings.$i}." { font-family: '".${fontName.$i}."', ".$this->getConf('genericFamily')."; }";
+	        if ( ${addStyle.$i} && !empty(${fontName.$i}) ) {
+		        $CSSembed[] = ${headings.$i}." { font-family: '".preg_replace('/:.*/','',${fontName.$i})."', ".${genFamily.$i}."; }";
 			}
 		}
 
         $CSSfiles = array(
-			'http://fonts.googleapis.com/css?family='.implode("|",str_replace(' ', '+', $fontNames))
+			'http://fonts.googleapis.com/css?family='.trim(implode("|",str_replace(' ', '+', $fontNames)),"|")
 		);
 
         // include all relevant CSS files
