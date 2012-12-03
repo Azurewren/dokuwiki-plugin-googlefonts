@@ -1,0 +1,9 @@
+GoogleFonts Plugin for DokuWiki
+
+See plugin.info.txt for the main information.
+
+==== Google Font API ====
+
+You can use any of the fonts listed here: http://www.google.com/webfonts
+
+You can add variants into the "fontFile" option, e.g. 'Expletus+Sans:regular,bold'.
