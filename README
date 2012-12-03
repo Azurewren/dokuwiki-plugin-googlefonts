@@ -1,6 +1,6 @@
 GoogleFonts Plugin for DokuWiki
-
-See plugin.info.txt for the main information.
+===============================
+A DokuWiki Plugin to embed google web font for headlines or other tags, css classes or css id's.
 
 ==== Google Font API ====
 
