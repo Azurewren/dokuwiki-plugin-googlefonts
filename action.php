@@ -44,7 +44,7 @@ class action_plugin_googlefonts extends DokuWiki_Action_Plugin {
 		}
 
         $CSSfiles = array(
-			'http://fonts.googleapis.com/css?family='.trim(implode("|",str_replace(' ', '+', $fontNames)),"|")
+			'//fonts.googleapis.com/css?family='.trim(implode("|",str_replace(' ', '+', $fontNames)),"|")
 		);
 
         // include all relevant CSS files
