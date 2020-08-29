@@ -16,7 +16,7 @@ require_once(DOKU_PLUGIN.'action.php');
 class action_plugin_googlefonts extends DokuWiki_Action_Plugin {
 
     // register hook
-    function register(&$controller) {
+    function register(Doku_Event_Handler $controller) {
         $controller->register_hook('TPL_METAHEADER_OUTPUT','BEFORE', $this, '_addFontCode');
     }
 
@@ -31,15 +31,15 @@ class action_plugin_googlefonts extends DokuWiki_Action_Plugin {
 		$fontNames = array();
 
 		for ($i = 1; $i <= 6; $i++) {
-			${fontName.$i} = $this->getConf('fontName'.$i);
-			${headings.$i} = $this->getConf('headings'.$i);
-			${genFamily.$i} = $this->getConf('genFamily'.$i);
-			${addStyle.$i} = $this->getConf('addStyle'.$i);
-			$fontNames[] = ${fontName.$i};
+			${'fontName'.$i} = $this->getConf('fontName'.$i);
+			${'headings'.$i} = $this->getConf('headings'.$i);
+			${'genFamily'.$i} = $this->getConf('genFamily'.$i);
+			${'addStyle'.$i} = $this->getConf('addStyle'.$i);
+			$fontNames[] = ${'fontName'.$i};
 	        // add styles
 		    // if not set, set them through CSS as usual
-	        if ( ${addStyle.$i} && !empty(${fontName.$i}) ) {
-		        $CSSembed[] = ${headings.$i}." { font-family: '".preg_replace('/:.*/','',${fontName.$i})."', ".${genFamily.$i}."; }";
+	        if ( ${'addStyle'.$i} && !empty(${'fontName'.$i}) ) {
+		        $CSSembed[] = ${'headings'.$i}." { font-family: '".preg_replace('/:.*/','',${'fontName'.$i})."', ".${'genFamily'.$i}."; }";
 			}
 		}
 
